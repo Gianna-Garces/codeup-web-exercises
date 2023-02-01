@@ -1,48 +1,41 @@
 "use strict";
 
 // Loops Exercise 2
-// function showMultiplicationTable(num) {
-//     for (let i = 1; i <= 10; i++) {
-//         console.log(num + "x" + i + "=" + num * i);
-//     }
-// }
 
+// Create a function named showMultiplicationTable that accepts a number and console.logs the multiplication table for that number (just multiply by the numbers 1 through 10)
+
+
+
+function showMultiplicationTable(number) {
+    for (var i = 1; i <= 10; i++) {
+        console.log(number + "x" + i + "=" + number * i);
+    }
+}
+ showMultiplicationTable(5);
 
 // Exercise 3
 
-function doThing() {
-    for (let i = 0; i <10; i++) {
-        let generatedNumber = numberGenerator();
-        let evenOrOdd = isEvenOrOdd(generatedNumber);
-        console.log(generatedNumber + evenOrOdd)
-    }
-}
-function numberGenerator() {
-    return Math.floor(Math.random() * + 20);
-}
-function isEvenOrOdd(number) {
-    if (number % 2 === 0) {
-        return " is even";
-    } else {
-        return " is odd";
-    }
-}
+// Use a for loop and the code from the previous lessons to generate 10 random numbers between 20 and 200 and output to the console whether each number is odd or even.
 
-doThing();
+
+for(var i=0; i<10; i++) {
+        var random = Math.floor((Math.random()*180 ) +20)
+        if(random % 2 === 0) {
+            console.log(random + " is even");
+        } else {
+            console.log(random + " is odd");
+        }
+    }
 
 // Exercise 4
 
-function numberTree(){
-    for (let i = 0; i < 9; i++) {
-        let numberLine = "";
-        for (let j = 0; j < i + 1: j ++) {
-            numberLine
-        }
-    }
+for (var i=1; i<=9; i++) {
+    console.log(i.toString().repeat(i))
 }
 
+//Exercise 5
 
-
-
-
+for(var i=100; i>=5; i=i-5) {
+    console.log(i);
+}
 
