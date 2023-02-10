@@ -1,3 +1,58 @@
+* {
+    font-family: 'Zilla Slab', serif;
+}
+
+body {
+    background-color: darkgray;
+    background-image: url("../gradientbackground.jpg");
+}
+
 .fancy-header {
-    color: purple;ß
+    text-align: center;
+    color: purple;
+    text-decoration: underline;
+}
+
+h2 {
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+li {
+    list-style: square;
+}
+
+table {
+    padding: .5em;
+}
+
+tr, td, th {
+    padding: 1em;
+}
+
+th {
+    font-size: 25px;
+    padding: ;
+}
+
+a:link {
+    color: palevioletred;
+}
+
+a:visited {
+    color: darkgreen;
+}
+
+a:hover {
+    color: azure;
+}
+
+a:active {
+    color: purple;
+}
+
+img {
+    border-radius: 75%;
+    border: 5px solid dimgrey;
+
 }
