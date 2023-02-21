@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Zilla+Slab&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav{
+    display: flex;
+    background-color: dimgray;
+}
+
+nav a:hover{
+    background-color: cornflowerblue;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+}
+
+
+h2 {
+    font-size: 3em;
+}
+
+nav h2{
+    margin: auto auto;
+}
+
