@@ -1,0 +1,16 @@
+.jumbopizza{
+    background-image: url(../img/pizza.png);
+    height: 346px;
+    background-size: cover;
+}
+
+
+#pizza-text {
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
