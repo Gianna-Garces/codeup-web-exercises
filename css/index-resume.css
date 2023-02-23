@@ -1,0 +1,14 @@
+.contact-list {
+    font-size: small;
+    list-style-type: none;
+    text-align: center;
+}
+
+.text-titles {
+    text-align: left;
+    color: dodgerblue;
+}
+
+hr {
+    border: 5px solid yellowgreen;
+}
