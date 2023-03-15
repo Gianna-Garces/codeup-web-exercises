@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Weather Map</title>
+
+<!--  Mapbox CDN-->
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+  <!-- Geocoder-->
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoeder.min.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css'/>
+
+</head>
+<body>
+<h2>Weather</h2>
+
+<div id="weatherBody">
+
+</div>
+
+<!--JQuery CDN-->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+
+<script src="js/keys.js"></script>
+<script src="mapbox-geocoder-utils.js"></script>
+<script>
+    mapboxgl.accessToken = mapBoxKey;
+
+    const map = new mapboxgl.Map(
+            {
+              container: 'map',
+              style: `mapbox://styles/mapbox/outdoors-v12`,
+              center: [-98.491142,29.424349],
+              zoom: 12
+            }
+    );
+
+    const marker = new mapboxgl.Marker({
+      draggable: true
+    })
+            .setLngLat([-98.491142,29.424349])
+            .addTo(map);
+
+    // Marker
+
+    marker.on('dragend', function (e){
+      let longlat = e.target._lngLat;
+      console.log(longlat);
+
+      reverseGeocode({lat: longlat.lat, lng:longlat.lng}, mapBoxKey).then(function (results){
+        console.log(results)
+
+        $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${results[1]}&lon=${results[0]}&appid=${openWeatherKey}&units=imperial`).done(function(data){
+          for (var i = 0; i <=39; i +=8) {
+            html += `<div>`
+            html += `<h5>${data.list[i].dt_txt}</h5> `
+            html += `<h6>${data.list[i].main.temp}</h6>`
+            html += `<h6><img class="icons" src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png"</h6>`
+            html += `<h6>Description: ${data.list[i].main.humidity}</h6>`
+            html += `<h6>Humidity: ${data.list[i].weather[0].description}</h6>`
+            html += `<h6>Wind: ${data.list[i].wind.speed}</h6>`
+            html += `<h6>Pressure: ${data.list[i].main.pressure}</h6>`
+            html += `</div>`
+          }
+          $("#weatherBody").html(html);
+        })
+        html = "";
+      })
+
+    });
+
+  function geoWeather(searchString) {
+    let html = "";
+    geocode(searchString, mapBoxKey).then(function (results) {
+
+      $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${results[1]}&lon=${results[0]}&appid=${openWeatherKey}&units=imperial`).done(function(data){
+        for (var i = 0; i <=39; i +=8) {
+                  html += `<div>`
+                  html += `<h5>${data.list[i].dt_txt}</h5> `
+                  html += `<h6>${data.list[i].main.temp}</h6>`
+                  html += `<h6><img class="icons" src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png"</h6>`
+                  html += `<h6>Description: ${data.list[i].main.humidity}</h6>`
+                  html += `<h6>Humidity: ${data.list[i].weather[0].description}</h6>`
+                  html += `<h6>Wind: ${data.list[i].wind.speed}</h6>`
+                  html += `<h6>Pressure: ${data.list[i].main.pressure}</h6>`
+                  html += `</div>`
+        }
+        $("#weatherBody").html(html);
+      })
+      html = "";
+    })
+  }
+
+  $("myBtn").click(function(e){
+    e.preventDefault();
+    geoWeather($("#searchInput").val());
+  })
+
+</script>
+</body>
+</html>
