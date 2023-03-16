@@ -12,12 +12,27 @@
 
   <!--Geocoder-->
 
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoeder.min.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css'/>
+
+  <!--JQuery CDN-->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<!--  CSS-->
+  <link rel="stylesheet" href="css/weather_map.css">
+
+<!--  Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fredoka+One&family=Montserrat:wght@300;500;700&family=Noto+Sans:wght@300&family=Zilla+Slab&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<h2>Weather</h2>
+
+
+<h1><div class="d-flex justify content-center align-items-center">5 Day Weather Forecast
+  <span id="currentCity"></span></div> </h1>
+
 
 <input type="text" placeholder="Search by Location" id="searchInput"> <button id="myBtn">Search</button>
 
@@ -26,14 +41,12 @@
 </div>
 
 <div id='map' style='width: auto; height: 200px;'></div>
-<!--JQuery CDN-->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
 
 <script src="js/keys.js"></script>
 <script src="mapbox-geocoder-utils.js"></script>
 <script src="js/weather_map.js"></script>
 <script>
-
 </script>
 </body>
 </html>

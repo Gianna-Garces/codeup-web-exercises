@@ -24,21 +24,33 @@ marker.on('dragend', function (e){
     reverseGeocode({lat: longlat.lat, lng:longlat.lng}, mapBoxKey).then(function (results){
         console.log(results);
 
+        html += `<div class="row">`
+
         $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${results[1]}&lon=${results[0]}&appid=${openWeatherKey}&units=imperial`).done(function(data){
             for (var i = 0; i <=39; i +=8) {
-                html += `<div>`
-                html += `<h5>Date: ${data.list[i].dt_txt}</h5> `
-                html += `<h6>High / Low: ${data.list[i].main.temp_min}&deg; / ${data.list[i].main.temp_max}&deg;</h6>`
+                html += `<div class="col-2" style="style=" color: #00AFB5">`
+                html += `<div class="card-body">`
+                html += `<h5 class="card-title">Date: ${data.list[i].dt_txt}</h5> `
+                html += `<h6 class="card-text">High / Low: ${data.list[i].main.temp_min}&deg; / ${data.list[i].main.temp_max}&deg;</h6>`
                 html += `<h6><img class="icons" src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png"</h6>`
-                html += `<h6>Description: ${data.list[i].main.humidity}</h6>`
-                html += `<h6>Humidity: ${data.list[i].weather[0].description}</h6>`
-                html += `<h6>Wind: ${data.list[i].wind.speed}</h6>`
-                html += `<h6>Pressure: ${data.list[i].main.pressure}</h6>`
+                html += `<h6 class="card-text">Description: ${data.list[i].main.humidity}</h6>`
+                html += `<h6 class="card-text">Humidity: ${data.list[i].weather[0].description}</h6>`
+                html += `<h6 class="card-text">Wind: ${data.list[i].wind.speed}</h6>`
+                html += `<h6 class="card-text">Pressure: ${data.list[i].main.pressure}</h6>`
                 html += `</div>`
+                html += `</div>`
+                html += `</div>`
+
             }
+            html += `</div>`
+
             $("#weatherBody").html(html);
+
+            // Current City
+            let city ="";
+            city += `<h3>Current Location: ${data.city.name}</h3>`;
+            $("#currentCity").html(city)
         })
-        html = "";
     })
 
 });
@@ -52,19 +64,26 @@ function geoWeather(searchString) {
 
         $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${results[1]}&lon=${results[0]}&appid=${openWeatherKey}&units=imperial`).done(function(data){
             for (var i = 0; i <=39; i +=8) {
-                html += `<div>`
-                html += `<h5>Date: ${data.list[i].dt_txt}</h5> `
-                html += `<h6>High / Low: ${data.list[i].main.temp_min}&deg; / ${data.list[i].main.temp_max}&deg;</h6>`
+                html += `<div class="col-2 card mx-2" style="color: #00AFB5">`
+                html += `<div class="card-body" style="background: #025050">`
+                html += `<h5 class="card-title">Date: ${data.list[i].dt_txt}</h5> `
+                html += `<h6 class="card-text">High / Low: ${data.list[i].main.temp_min}&deg; / ${data.list[i].main.temp_max}&deg;</h6>`
                 html += `<h6><img class="icons" src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png"</h6>`
-                html += `<h6>Description: ${data.list[i].main.humidity}</h6>`
-                html += `<h6>Humidity: ${data.list[i].weather[0].description}</h6>`
-                html += `<h6>Wind: ${data.list[i].wind.speed}</h6>`
-                html += `<h6>Pressure: ${data.list[i].main.pressure}</h6>`
+                html += `<h6 class="card-text">Description: ${data.list[i].main.humidity}</h6>`
+                html += `<h6 class="card-text">Humidity: ${data.list[i].weather[0].description}</h6>`
+                html += `<h6 class="card-text">Wind: ${data.list[i].wind.speed}</h6>`
+                html += `<h6 class="card-text">Pressure: ${data.list[i].main.pressure}</h6>`
                 html += `</div>`
+                html += `</div>`
+                html += `</div>`
+
             }
             $("#weatherBody").html(html);
+            // Current City
+            let city ="";
+            city += `<h3>Current Location: ${data.city.name}</h3>`;
+            $("#currentCity").html(city)
         })
-        html = "";
     })
 }
 
